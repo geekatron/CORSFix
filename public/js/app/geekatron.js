@@ -48,9 +48,9 @@ org.geekatron.integration.rest = {};
 org.geekatron.integration.rest.sample = {};
 //Namespace for the CORS enabled service
 org.geekatron.integration.rest.sample.good = {};
-org.geekatron.integration.rest.sample.good.get = function (data, callback) {
+org.geekatron.integration.rest.sample.good.get = function (callback) {
     var endpoints = org.geekatron.config.getEndPoints(),
-        url_base = endpoints.services.cors.good,
+        url_base = "http://" + endpoints.services.cors.good,
         url_resource = '/sample/',
         url = url_base + url_resource;
 
@@ -82,9 +82,10 @@ org.geekatron.integration.rest.sample.good.get = function (data, callback) {
     });
 };
 //Namespace for the CORS disabled service
-org.geekatron.integration.rest.sample.bad = function (data, callback) {
+org.geekatron.integration.rest.sample.bad = {};
+org.geekatron.integration.rest.sample.bad.get = function (callback) {
     var endpoints = org.geekatron.config.getEndPoints(),
-        url_base = endpoints.services.cors.bad,
+        url_base = "http://" + endpoints.services.cors.bad,
         url_resource = '/sample/',
         url = url_base + url_resource;
 
@@ -144,11 +145,35 @@ org.geekatron.viewmodel.Sample = function (args) {
 
     /* Initialize the View Model */
     (function () {
+        function handleGoodResponse(err, data) {
+            if (!_.isNull(err) && !_.isUndefined(err)) {
+                //Handle Error Case
+                console.log(err);
+            } else {
+                //Handle Success Case
+                console.log(data);
+            }
+
+        }//END handleGoodResponse
+
+        function handleBadResponse (err, data) {
+            if (!_.isNull(err) && !_.isUndefined(err)) {
+                //Handle Error Case
+                console.log(err);
+            } else {
+                //Handle Success Case
+                console.log(data);
+            }
+        }//END handleBadResponse
+
         //Update the Content of the Good CORS div
         self.updateGoodTerminal("Initiating request to patched server (CORS enabled)...");
         //Update the Content of the Bad CORS div
         self.updateBadTerminal("Initiating request to un-patched server (CORS disabled)...");
+
         //Issue the sample GET request to the Good CORS service
+        org.geekatron.integration.rest.sample.good.get(handleGoodResponse);
         //Issue the sample GET request to the Bad CORS service
+        org.geekatron.integration.rest.sample.bad.get(handleBadResponse);
     }());
 };

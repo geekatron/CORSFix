@@ -50,7 +50,7 @@ org.geekatron.integration.rest.sample = {};
 org.geekatron.integration.rest.sample.good = {};
 org.geekatron.integration.rest.sample.good.get = function (callback) {
     var endpoints = org.geekatron.config.getEndPoints(),
-        url_base = endpoints.services.cors.good,
+        url_base = "http://" + endpoints.services.cors.good,
         url_resource = '/sample/',
         url = url_base + url_resource;
 
@@ -82,9 +82,10 @@ org.geekatron.integration.rest.sample.good.get = function (callback) {
     });
 };
 //Namespace for the CORS disabled service
-org.geekatron.integration.rest.sample.bad = function (callback) {
+org.geekatron.integration.rest.sample.bad = {};
+org.geekatron.integration.rest.sample.bad.get = function (callback) {
     var endpoints = org.geekatron.config.getEndPoints(),
-        url_base = endpoints.services.cors.bad,
+        url_base = "http://" + endpoints.services.cors.bad,
         url_resource = '/sample/',
         url = url_base + url_resource;
 
@@ -147,8 +148,10 @@ org.geekatron.viewmodel.Sample = function (args) {
         function handleGoodResponse(err, data) {
             if (!_.isNull(err) && !_.isUndefined(err)) {
                 //Handle Error Case
+                console.log(err);
             } else {
                 //Handle Success Case
+                console.log(data);
             }
 
         }//END handleGoodResponse
@@ -156,8 +159,10 @@ org.geekatron.viewmodel.Sample = function (args) {
         function handleBadResponse (err, data) {
             if (!_.isNull(err) && !_.isUndefined(err)) {
                 //Handle Error Case
+                console.log(err);
             } else {
                 //Handle Success Case
+                console.log(data);
             }
         }//END handleBadResponse
 
