@@ -47,8 +47,8 @@ body {
 }
 
 .terminal {
-    min-height: 200px;
-    max-height: 300px;
+    min-height: 250px;
+    max-height: 250px;
     background-color: black;
     opacity: 0.7;
     line-height: 12px;
