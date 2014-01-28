@@ -136,11 +136,11 @@ org.geekatron.viewmodel.Sample = function (args) {
     self.bad = ko.observable();
 
     self.updateGoodTerminal = function (message) {
-        $("#goodterminal").append("<p>good CORS$" + message + "</p>");
+        $("#goodterminal").append("<p>good CORS$ " + message + "</p>");
     };
 
     self.updateBadTerminal = function (message) {
-        $("#badterminal").append("<p>bad CORS$" + message + "</p>");
+        $("#badterminal").append("<p>bad CORS$ " + message + "</p>");
     };
 
     /* Initialize the View Model */
@@ -151,7 +151,15 @@ org.geekatron.viewmodel.Sample = function (args) {
                 console.log(err);
             } else {
                 //Handle Success Case
+                console.log("Success retrieving request from CORS patched server! Data object:");
                 console.log(data);
+                //Update the Terminal Prompt
+                self.updateGoodTerminal("SUCCESS retrieving request from CORS patched server!!!");
+                self.updateGoodTerminal("Message response as string:");
+                self.updateGoodTerminal(JSON.stringify(data));
+                self.updateGoodTerminal("Please use the Developer Console to see the see & play with the result...");
+                self.updateGoodTerminal("exit");
+                self.updateGoodTerminal("[Process completed]|");
             }
 
         }//END handleGoodResponse
@@ -159,9 +167,18 @@ org.geekatron.viewmodel.Sample = function (args) {
         function handleBadResponse (err, data) {
             if (!_.isNull(err) && !_.isUndefined(err)) {
                 //Handle Error Case
+                console.log("ERROR retrieving request from un-patched server! Data object:");
                 console.log(err);
+                //Update the Terminal Prompt
+                self.updateBadTerminal("ERROR retrieving request from un-patched server!!!");
+                self.updateBadTerminal("Error message response as string:");
+                self.updateBadTerminal(JSON.stringify(err));
+                self.updateBadTerminal("Please use the Developer Console to see the see & play with the result...");
+                self.updateBadTerminal("exit");
+                self.updateBadTerminal("[Process completed]|");
             } else {
                 //Handle Success Case
+                //Hilarious as it's not going to happen while browsers handle the CORS case
                 console.log(data);
             }
         }//END handleBadResponse
