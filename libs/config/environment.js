@@ -32,6 +32,7 @@ module.exports = function (app, express) {
         //Setup the routes
         app.use(app.router);
         app.use('/style', express.static('public/assets/css'));
+        app.use('/html', express.static('public/html'));
         app.use('/img', express.static('public/assets/img'));
         app.use('/images', express.static('public/assets/images'));
         app.use('/fonts', express.static('public/assets/fonts'));
@@ -43,7 +44,7 @@ module.exports = function (app, express) {
     });
 
     //Named Configuration - Development
-    app.configue('development', function() {
+    app.configure('development', function() {
         app.use(express.bodyParser());
         app.use(express.errorHandler({
             dumpExceptions: true,
@@ -53,6 +54,7 @@ module.exports = function (app, express) {
         //Setup the routes
         app.use(app.router);
         app.use('/style', express.static('public/assets/css'));
+        app.use('/html', express.static('public/html'));
         app.use('/img', express.static('public/assets/img'));
         app.use('/images', express.static('public/assets/images'));
         app.use('/fonts', express.static('public/assets/fonts'));

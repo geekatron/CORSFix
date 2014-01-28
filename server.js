@@ -16,8 +16,6 @@
  */
 var express = require('express'),
     env = require('./libs/config/endpoint'),
-    routes = require('./routes'),
-    user = require('./routes/user'),
     http = require('http'),
     path = require('path'),
     app = express();
@@ -39,7 +37,15 @@ require('./libs/config/environment.js')(app, express);
 /** Routes for the CORS Fix */
 //Route to support CORS
 //require('./routes/routes_cors')(app);
-//Route for the test service
-require('./libs/')(app);
+//Route for HTML content
+//require('./routes/routes_html')(app);
+//Route for the test service - RESTful Sample
+require('./routes/routes_sample')(app);
 
-//Get the address without http
+// start server
+app.listen(processport);
+
+//Print out the port on startup
+console.log("Port (process.env.PORT): " + processport);
+console.log("Port for node.js process: " + app.get('port'));
+console.log('APP Address: ' + app.get('address'));
