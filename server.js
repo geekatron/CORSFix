@@ -38,7 +38,7 @@ require('./libs/config/environment.js')(app, express);
 
 /** Routes for the CORS Fix */
 //Route to support CORS
-require('./routes/routes_cors')(app);
+//require('./routes/routes_cors')(app);
 //Route for the test service
 require('./libs/')(app);
 
