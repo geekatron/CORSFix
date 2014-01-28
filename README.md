@@ -13,7 +13,6 @@ Endpoint configuration driven by Environmental Variables. Please see below for m
 ## Environment Variables
 ### Sample Service Address
 * CORS_FIX
-* AWS_SECRET_ACCESS_KEY
 
 
 ## Node.js WebStorm Configuration
