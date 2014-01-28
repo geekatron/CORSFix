@@ -43,7 +43,7 @@ module.exports = function (app, express) {
     });
 
     //Named Configuration - Development
-    app.configue('development', function() {
+    app.configure('development', function() {
         app.use(express.bodyParser());
         app.use(express.errorHandler({
             dumpExceptions: true,

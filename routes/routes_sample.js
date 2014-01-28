@@ -54,7 +54,7 @@ module.exports = function (app) {
     app.get('/sample/', function (req, res) {
         res.send(200, {
             type : "profile#sample",
-            url : "process.env.CORS_FIX" + '/sample/',
+            url : process.env.CORS_FIX + '/sample/',
             data : "Welcome to the CORS Fix sample page!"
         });
     });
@@ -76,13 +76,13 @@ module.exports = function (app) {
      *  Routes that require authentication!                     *
      *************************************************************/
 
-    app.get('/sample/', ensureAuthenticated, function (req, res) {
-
-    });
-
-    app.post('/sample/', ensureAuthenticated, function (req, res) {
-
-    });
+//    app.get('/sample/', ensureAuthenticated, function (req, res) {
+//
+//    });
+//
+//    app.post('/sample/', ensureAuthenticated, function (req, res) {
+//
+//    });
 
 
 };
